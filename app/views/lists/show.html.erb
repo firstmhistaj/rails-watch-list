@@ -1,0 +1,7 @@
+<!-- app/views/lists/show.html.erb -->
+<h1><%= @list.name %></h1>
+
+<%# display bookmarks %>
+<% @list.bookmarks.each do |bookmark| %>
+<li> <%= bookmark.comment %></li>
+<% end %>
