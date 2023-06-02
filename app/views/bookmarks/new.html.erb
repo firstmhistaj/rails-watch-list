@@ -1,7 +1,6 @@
-<h1> </h1>
-<%= simple_form_for(restaurant) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.input :rating %>
-  <%= f.submit %>
+<h1>bookmark</h1>
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.association :movie %>
+  <%= f.input :comment %>
+  <%= f.submit "Submit comment", class: "btn btn-primary" %>
 <% end %>

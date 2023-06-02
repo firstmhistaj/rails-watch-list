@@ -5,18 +5,21 @@ class BookmarksController < ApplicationController
   end
   def new
     @bookmark = Bookmark.new
+    @list = List.find(params[:list_id])
   end
 
   def create
     # Logic to create a new bookmark
-    @bookmark = Bookmark.new(params[:id])
-
+    @bookmark = Bookmark.new(bookmark_params)
+    @list = List.find(params[:list_id])
+    @bookmark.list = @list
+    @bookmark.movie = Movie.find(params[:bookmark][:movie_id])
     if @bookmark.save
       # Handle successful bookmark creation
-      redirect_to @bookmark
+      redirect_to list_path(@list)
     else
       # Handle failed bookmark creation
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,6 +34,6 @@ class BookmarksController < ApplicationController
   private
 
   def bookmark_params
-    params.require(:bookmark).permit(:comment, :movie_id, :list_id)
+    params.require(:bookmark).permit(:comment, :movie, :list_id)
   end
 end

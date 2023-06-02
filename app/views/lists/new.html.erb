@@ -1,0 +1,6 @@
+<!-- app/views/comments/new.html.erb -->
+<h1>bookmark</h1>
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.input :content %>
+  <%= f.submit "Submit comment", class: "btn btn-primary" %>
+<% end %>
